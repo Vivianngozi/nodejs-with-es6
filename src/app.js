@@ -5,8 +5,6 @@ dotenv.config();
 const app = express();
 
 import bodyParser from 'body-parser';
-
-import mongoose from 'mongoose';
 import DB from './models/db.js';
 
 

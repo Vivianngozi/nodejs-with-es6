@@ -33,37 +33,17 @@ export default{
     // read comments
     async commRead (req, res){
         try {
+            if(Object.keys(await Blog.findById(req.params.id)).length ===0){
+                return res.status(400).json({
+                    "message" : "Blog not found with that id "
+                })
+            }
 
-            const post = await Blog.findOne({_id: req.params.id});
-        if(!req.params.id || !req.params.reviewid || !post){
-            return res.status(404).json({
-                "message" : "not found"
-            })
-            return;
-        }
-        
-        if(req.params && req.params.id && req.params.reviewid) {
-            
-        
-            await Blog.findById(req.params.id).then((blog)=>{
-                let doc= blog.reviews.id(req.params.reviewid);
-                console.log(doc);
-                return res.status(400).json(doc);
-            }).catch((err)=>{
-                res.status(400).json(err)
-            });
-        } else {
-            return res.status(404).json({
-                "message" : "not found"
-            });
-            return;
-        }
-            
+            let {reviews} = await Blog.findById(req.params.id)
+            res.status(200).json(reviews);           
         } catch (error) {
             res.status(400).json(error);
         }
-        
-        
     },
 
 

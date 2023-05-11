@@ -31,9 +31,7 @@ export default {
             await user.save();
 
             const payload = {
-                user: {
                     id: user.id
-                }
             };
 
             jwt.sign(
@@ -82,7 +80,7 @@ export default {
                 payload,
                 process.env.JWT_SECRET,
                 {
-                    expiresIn: 3600
+                    expiresIn: "2h"
                 },
                 (err, token)=>{
                     if(err) throw err;
