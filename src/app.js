@@ -8,7 +8,6 @@ import bodyParser from 'body-parser';
 import DB from './models/db.js';
 
 
-
 import {router as indexRouter} from './routes/index.js';
 
 DB.connect();
@@ -27,7 +26,9 @@ app.get('/health', (req, res)=>{
     res.status(200).json({
         "message": "server is running"
     });
-})
+});
+
+
 
 app.use(function(req, res, next){
     next(createError(404));

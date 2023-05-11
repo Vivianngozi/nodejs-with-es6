@@ -18,6 +18,11 @@ export default {
                     "message": "user already exists"
                 })
             }
+            if(!process.env.JWT_SECRET){
+                return res.status(400).json({
+                    "message": "no secret found"
+                })
+            }
 
             user = new User({
                 name,
